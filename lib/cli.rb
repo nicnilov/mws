@@ -2,6 +2,9 @@ require 'dotenv'
 require 'highline/import'
 require_relative 'mws'
 
+# emulating rubygems functionality until mws becomes a gem
+$:.unshift(File.expand_path('../../lib/', __FILE__)) unless $:.include?(File.expand_path('../../lib/', __FILE__))
+
 module Cli
   def self.execute
     display_welcome
@@ -14,6 +17,7 @@ module Cli
       throw 'Every parameter should have a value' if value.to_s == ''
     end
 
+    @mws = Mws.new
 #    @mws_client = MwsClient.new({
 #      merchant_id: merchant_id,
 #      marketplace_id: marketplace_id,
