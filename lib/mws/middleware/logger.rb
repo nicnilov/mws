@@ -1,7 +1,7 @@
 require 'forwardable'
 
 module Mws
-  class Mws::Logger < Faraday::Response::Middleware
+  class Middleware::Logger < Faraday::Response::Middleware
     extend Forwardable
 
     def initialize(app, logger, options)

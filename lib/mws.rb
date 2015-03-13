@@ -4,11 +4,12 @@ require 'faraday_middleware'
 require 'mws/config'
 
 module Mws
-  autoload :Client, 'mws/client'
+  autoload :Client,     'mws/client'
+  autoload :Middleware, 'mws/middleware'
 
   module Concerns
     autoload :Connection, 'mws/concerns/connection'
-    autoload :Base, 'mws/concerns/base'
+    autoload :Base,       'mws/concerns/base'
   end
 
   class << self
