@@ -1,6 +1,20 @@
 require 'logger'
 
 module Mws
+
+  MARKETPLACE_URLS = {
+    A2EUQ1WTGCTBG2: 'https://mws.amazonservices.ca',
+    ATVPDKIKX0DER: 'https://mws.amazonservices.com',
+    A1PA6795UKMFR9: 'https://mws-eu.amazonservices.com',
+    A1RKKUPIHCS9HS: 'https://mws-eu.amazonservices.com',
+    A13V1IB3VIYZZH: 'https://mws-eu.amazonservices.com',
+    A21TJRUUN4KGV: 'https://mws.amazonservices.in',
+    APJ6JRA9NG5V4: 'https://mws-eu.amazonservices.com',
+    A1F83G8C2ARO7P: 'https://mws-eu.amazonservices.com',
+    A1VC38T7YXB528: 'https://mws.amazonservices.jp',
+    AAHKV2X7AFYLW: 'https://mws.amazonservices.com.cn'
+  }
+
   # Shamelessly pulled from https://github.com/ejholmes/restforce/blob/master/lib/restforce/config.rb
   class << self
     attr_writer :log
@@ -101,7 +115,7 @@ module Mws
     # Faraday request read/open timeout.
     option :timeout
 
-    # TODO: Not sure this will be needed in the end
+    # Instance url of Amazon MWS marketplace
     option :instance_url
 
     # Faraday adapter to use. Defaults to Faraday.default_adapter.

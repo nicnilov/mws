@@ -22,15 +22,16 @@ module Mws
       #        :authentication_callback
       #                                - A Proc that is called with the response body after a successful authentication.
       def initialize(opts = {})
-        raise ArgumentError 'Please specify hash of opts' unless opts.is_a?(Hash)
+        raise ArgumentError, 'Please specify a hash of options' unless opts.is_a?(Hash)
         @options = Hash[Mws.configuration.options.map { |option| [option, Mws.configuration.send(option)] }]
         @options.merge(opts)
         yield builder if block_given?
       end
 
-#      def instance_url
-#        TODO: infer from marketplace id
-#      end
+      def instance_url
+        options[:instance_url] = Mws::MARKETPLACE_URLS[options[:marketplace_id].to_sym] unless options[:instance_url]
+        options[:instance_url]
+      end
 
       def inspect
         "#<#{self.class} @options=#{@options.inspect}>"
