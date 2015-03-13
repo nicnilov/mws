@@ -101,6 +101,9 @@ module Mws
     # Faraday request read/open timeout.
     option :timeout
 
+    # TODO: Not sure this will be needed in the end
+    option :instance_url
+
     # Faraday adapter to use. Defaults to Faraday.default_adapter.
     option :adapter, :default => lambda { Faraday.default_adapter }
 

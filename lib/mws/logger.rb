@@ -1,6 +1,6 @@
 require 'forwardable'
 
-module Restforce
+module Mws
   class Mws::Logger < Faraday::Response::Middleware
     extend Forwardable
 
