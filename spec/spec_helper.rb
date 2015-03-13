@@ -10,8 +10,8 @@ RSpec.configure do |config|
   config.order = 'random'
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
-  config.raise_errors_for_deprecations!
-  config.fail_fast = true
+  # config.raise_errors_for_deprecations!
+  # config.fail_fast = true
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,

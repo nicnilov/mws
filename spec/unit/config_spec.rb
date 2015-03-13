@@ -6,6 +6,7 @@ describe Mws do
     ENV['AMWS_MARKETPLACE_ID'] = nil
     ENV['AMWS_ACCESS_KEY']     = nil
     ENV['AMWS_ACCESS_SECRET']  = nil
+    ENV['PROXY']               = nil
   end
 
   after do
