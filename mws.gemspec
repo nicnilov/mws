@@ -22,5 +22,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec', '~> 3.2.0'
   gem.add_development_dependency 'rspec-its', '~> 1.2.0'
-  gem.add_development_dependency 'simplecov', '~> 0.7.1'
+  gem.add_development_dependency 'simplecov', '~> 0.9.2'
 end
