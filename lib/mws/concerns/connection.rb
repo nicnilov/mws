@@ -22,7 +22,7 @@ module Mws
       def connection
         @connection ||= Faraday.new(options[:mws_endpoint], connection_options) do |builder|
           # Converts the request into XML.
-          builder.request  :xml
+          builder.request :json 
           # Follows 34x redirects.
           builder.use      FaradayMiddleware::FollowRedirects
           # Log request/responses

@@ -14,6 +14,10 @@ module Mws
     autoload :Feeds,      'mws/concerns/feeds'
   end
 
+  Error = Class.new(StandardError)
+  ConfigurationError = Class.new(Error)
+  AuthorizationError = Class.new(Error)
+
   class << self
     def new(*args)
       Mws::Client.new(*args)

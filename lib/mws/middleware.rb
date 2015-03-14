@@ -2,9 +2,8 @@ module Mws
   # Base class that all middleware can extend. Provides some convenient helper
   # functions.
   class Middleware < Faraday::Middleware
-    # autoload :RaiseError,     'mws/middleware/raise_error'
-    # autoload :Authorization,  'mws/middleware/authorization'
-    # autoload :MwsEndpoint,    'mws/middleware/mws_endpoint'
+    autoload :RaiseError,     'mws/middleware/raise_error'
+    autoload :MwsEndpoint,    'mws/middleware/mws_endpoint'
     # autoload :Mashify,        'mws/middleware/mashify'
     autoload :Logger,         'mws/middleware/logger'
 
