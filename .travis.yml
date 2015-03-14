@@ -7,3 +7,6 @@ rvm:
 gemfile:
   - Gemfile.travis
 script: bundle exec rake
+addons:
+  code_climate:
+    repo_token: 087b410c171eb3676bf3ed39262e5a48fa6c6efa6c103929c4d64d3dafa88a92
