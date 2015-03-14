@@ -6,6 +6,7 @@ PATH
       faraday_middleware (>= 0.9.1)
       hashie (>= 1.2.0, < 4.0)
       json (>= 1.7.5, < 1.9.0)
+      multi_xml (>= 0.5.5, < 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -52,6 +53,7 @@ GEM
     lumberjack (1.0.9)
     method_source (0.8.2)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.2.0)
     notiffany (0.0.6)
@@ -101,6 +103,7 @@ DEPENDENCIES
   guard-ctags-bundler
   guard-rspec
   highline
+  multi_xml (~> 0.5.5)
   mws!
   rake (~> 10.4.2)
   rspec (~> 3.2.0)

@@ -15,11 +15,11 @@ module Mws
     end
 
     def message
-      "#{body.first['errorCode']}: #{body.first['message']}"
+      "#{body['ErrorResponse']['Error']['Code']}: #{body['ErrorResponse']['Error']['Message']}"
     end
 
     def body
-      JSON.parse(@env[:body])
+      @env[:body]
     end
   end
 end

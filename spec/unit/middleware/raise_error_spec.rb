@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Mws::Middleware::RaiseError do
   # TODO: replace with mws expected error
-  let(:body)       { [{'message' => 'error_message', 'errorCode' => 'INVALID_FIELD'}].to_json }
+  let(:body)       { {'ErrorResponse'=>{'Error'=>{'Code'=>'INVALID_FIELD','Message'=>'error_message'}}} }
   let(:env)        { { :status => status, :body => body } }
   let(:middleware) { described_class.new app }
 
