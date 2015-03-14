@@ -5,7 +5,7 @@ module Mws
 
     def call(env)
       # If the connection url_prefix isn't set, we cannot proceed
-      raise Mws::ConfigurationError, 'Connection prefix not set' unless url_prefix_set?
+      raise Mws::ConfigurationError, 'MWS endpoint not set' unless url_prefix_set?
       @app.call(env)
     end
 
