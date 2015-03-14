@@ -10,6 +10,8 @@ module Mws
   module Concerns
     autoload :Connection, 'mws/concerns/connection'
     autoload :Base,       'mws/concerns/base'
+    autoload :Verbs,      'mws/concerns/verbs'
+    autoload :Feeds,      'mws/concerns/feeds'
   end
 
   class << self

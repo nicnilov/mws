@@ -2,7 +2,7 @@ require 'logger'
 
 module Mws
 
-  MARKETPLACE_URLS = {
+  MWS_ENDPOINTS = {
     A2EUQ1WTGCTBG2: 'https://mws.amazonservices.ca',
     ATVPDKIKX0DER: 'https://mws.amazonservices.com',
     A1PA6795UKMFR9: 'https://mws-eu.amazonservices.com',
@@ -109,14 +109,11 @@ module Mws
     # Client secret to sign requests with.
     option :aws_access_secret, :default => lambda { ENV['AMWS_ACCESS_SECRET'] }
 
-    # The number of times reauthentication should be tried before failing.
-    option :authentication_retries, :default => 3
-
     # Faraday request read/open timeout.
     option :timeout
 
-    # Instance url of Amazon MWS marketplace
-    option :instance_url
+    # Amazon MWS endpoint
+    option :mws_endpoint
 
     # Faraday adapter to use. Defaults to Faraday.default_adapter.
     option :adapter, :default => lambda { Faraday.default_adapter }

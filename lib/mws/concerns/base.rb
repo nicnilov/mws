@@ -12,15 +12,10 @@ module Mws
       #        :aws_access_key         - Amazon AWS API key
       #        :aws_access_secret      - Amazon AWS API secret key
       #
-      #        :authentication_retries - The number of times that client
-      #                                  should attempt to reauthenticate
-      #                                  before raising an exception (default: 3).
       #        :timeout                - Faraday connection request read/open timeout. (default: nil).
       #
       #        :proxy_uri              - Proxy URI: 'http://proxy.example.com:port' or 'http://user@pass:proxy.example.com:port'
       #
-      #        :authentication_callback
-      #                                - A Proc that is called with the response body after a successful authentication.
       def initialize(opts = {})
         raise ArgumentError, 'Please specify a hash of options' unless opts.is_a?(Hash)
         @options = Hash[Mws.configuration.options.map { |option| [option, Mws.configuration.send(option)] }]
@@ -28,9 +23,9 @@ module Mws
         yield builder if block_given?
       end
 
-      def instance_url
-        options[:instance_url] = Mws::MARKETPLACE_URLS[options[:marketplace_id].to_sym] unless options[:instance_url]
-        options[:instance_url]
+      def mws_endpoint
+        options[:mws_endpoint] = Mws::MWS_ENDPOINTS[options[:marketplace_id].to_sym] unless options[:mws_endpoint]
+        options[:mws_endpoint]
       end
 
       def inspect

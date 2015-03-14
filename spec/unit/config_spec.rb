@@ -19,10 +19,9 @@ describe Mws do
     it { should be_a Mws::Configuration }
 
     context 'by default' do
-      its(:authentication_retries) { should eq 3 }
       its(:adapter)                { should eq Faraday.default_adapter }
       [:seller_id, :marketplace_id, :aws_access_key, :aws_access_secret,
-       :instance_url, :timeout, :proxy_uri].each do |attr|
+       :mws_endpoint, :timeout, :proxy_uri].each do |attr|
         its(attr) { should be_nil }
       end
     end
@@ -47,7 +46,7 @@ describe Mws do
 
   describe '#configure' do
     [:seller_id, :marketplace_id, :aws_access_key, :aws_access_secret, :timeout,
-     :instance_url, :authentication_retries, :proxy_uri].each do |attr|
+     :mws_endpoint, :proxy_uri].each do |attr|
       it "allows #{attr} to be set" do
         Mws.configure do |config|
           config.send("#{attr}=", 'foobar')

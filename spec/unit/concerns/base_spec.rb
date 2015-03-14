@@ -29,13 +29,13 @@ describe Mws::Concerns::Base do
     it { should_not raise_error }
   end
 
-  describe '.instance_url' do
-    subject { client.instance_url }
+  describe '.mws_endpoint' do
+    subject { client.mws_endpoint }
 
-    context 'when options[:instance_url] is unset' do
+    context 'when options[:mws_endpoint] is unset' do
       before do
         expect(client).to receive(:options).at_least(:once).and_return(marketplace_id: 'foo')
-        expect(Mws::MARKETPLACE_URLS).to receive(:[]).with(:foo).and_return('bar')
+        expect(Mws::MWS_ENDPOINTS).to receive(:[]).with(:foo).and_return('bar')
       end
 
       it 'infers from marketplace map' do
@@ -43,9 +43,9 @@ describe Mws::Concerns::Base do
       end
     end
 
-    context 'when options[:instance_url] is set' do
+    context 'when options[:mws_endpoint] is set' do
       before do
-        expect(client).to receive(:options).at_least(:once).and_return(:instance_url => 'foo')
+        expect(client).to receive(:options).at_least(:once).and_return(:mws_endpoint => 'foo')
       end
 
       it { should eq 'foo' }

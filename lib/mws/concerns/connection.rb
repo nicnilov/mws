@@ -20,10 +20,10 @@ module Mws
 
       # Internal: Internal faraday connection where all requests go through
       def connection
-        @connection ||= Faraday.new(options[:instance_url], connection_options) do |builder|
+        @connection ||= Faraday.new(options[:mws_endpoint], connection_options) do |builder|
           # Converts the request into XML.
           builder.request  :xml
-          # Follows 30x redirects.
+          # Follows 34x redirects.
           builder.use      FaradayMiddleware::FollowRedirects
           # Log request/responses
           builder.use      Mws::Middleware::Logger, Mws.configuration.logger, options if Mws.log?

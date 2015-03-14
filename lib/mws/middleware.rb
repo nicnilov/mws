@@ -4,7 +4,7 @@ module Mws
   class Middleware < Faraday::Middleware
     # autoload :RaiseError,     'mws/middleware/raise_error'
     # autoload :Authorization,  'mws/middleware/authorization'
-    # autoload :InstanceURL,    'mws/middleware/instance_url'
+    # autoload :MwsEndpoint,    'mws/middleware/mws_endpoint'
     # autoload :Mashify,        'mws/middleware/mashify'
     autoload :Logger,         'mws/middleware/logger'
 
