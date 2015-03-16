@@ -14,7 +14,8 @@ module Mws
     autoload :Connection, 'mws/concerns/connection'
     autoload :Base,       'mws/concerns/base'
     autoload :Verbs,      'mws/concerns/verbs'
-    autoload :Feeds,      'mws/concerns/feeds'
+    autoload :Envelope,   'mws/concerns/envelope'
+    autoload :Api,        'mws/concerns/api'
   end
 
   Error = Class.new(StandardError)

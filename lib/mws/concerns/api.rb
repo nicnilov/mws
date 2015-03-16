@@ -2,7 +2,7 @@ require 'mws/concerns/verbs'
 
 module Mws
   module Concerns
-    module Feeds
+    module Api
       extend Mws::Concerns::Verbs
 
       # Public: Helper methods for performing arbitrary actions against the API using
@@ -25,14 +25,16 @@ module Mws
       # Returns the Faraday::Response.
       define_verbs(:get, :post, :put, :delete, :patch, :head)
 
-      def submit_feed(payload)
+      def request(payload)
         if block_given?
-          envelope_prologue
-
-          envelope_epilogue
+          xml = yield envelope
         else
           post('/', payload)
         end
+      end
+
+      def submit_feeds(payload, operation_type)
+
       end
 
     end

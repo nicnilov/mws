@@ -6,5 +6,6 @@ describe Mws::Client do
   it { should < Mws::Marketplace }
   it { should < Mws::Concerns::Base }
   it { should < Mws::Concerns::Connection }
-  it { should < Mws::Concerns::Feeds }
+  it { should < Mws::Concerns::Envelope }
+  it { should < Mws::Concerns::Api }
 end
