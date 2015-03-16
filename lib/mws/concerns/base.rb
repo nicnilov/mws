@@ -24,7 +24,7 @@ module Mws
       end
 
       def mws_endpoint
-        options[:mws_endpoint] = Mws::MWS_ENDPOINTS[options[:marketplace_id].to_sym] unless options[:mws_endpoint]
+        options[:mws_endpoint] = mws_endpoint_by_id(options[:marketplace_id]) unless options[:mws_endpoint]
         options[:mws_endpoint]
       end
 

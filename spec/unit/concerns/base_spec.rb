@@ -34,8 +34,7 @@ describe Mws::Concerns::Base do
 
     context 'when options[:mws_endpoint] is unset' do
       before do
-        expect(client).to receive(:options).at_least(:once).and_return(marketplace_id: 'foo')
-        expect(Mws::MWS_ENDPOINTS).to receive(:[]).with(:foo).and_return('bar')
+        expect(client).to receive(:mws_endpoint_by_id).and_return('bar')
       end
 
       it 'infers from marketplace map' do

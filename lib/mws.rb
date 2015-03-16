@@ -6,8 +6,9 @@ require 'mws/config'
 require 'mws/middleware'
 
 module Mws
-  autoload :Client,     'mws/client'
-  # autoload :Middleware, 'mws/middleware'
+  autoload :Client,       'mws/client'
+  autoload :Marketplace,  'mws/marketplace'
+  # autoload :Middleware,  'mws/middleware'
 
   module Concerns
     autoload :Connection, 'mws/concerns/connection'
@@ -19,6 +20,7 @@ module Mws
   Error = Class.new(StandardError)
   ConfigurationError = Class.new(Error)
   AuthorizationError = Class.new(Error)
+  InvalidMarketplaceIdError = Class.new(Error)
 
   class << self
     def new(*args)

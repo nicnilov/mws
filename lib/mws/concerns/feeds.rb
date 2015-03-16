@@ -26,7 +26,13 @@ module Mws
       define_verbs(:get, :post, :put, :delete, :patch, :head)
 
       def submit_feed(payload)
-        get('/', payload)
+        if block_given?
+          envelope_prologue
+
+          envelope_epilogue
+        else
+          post('/', payload)
+        end
       end
 
     end
