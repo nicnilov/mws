@@ -1,6 +1,7 @@
 require 'faraday'
 require 'faraday_middleware'
 
+require 'mws/version'
 require 'mws/config'
 require 'mws/middleware'
 

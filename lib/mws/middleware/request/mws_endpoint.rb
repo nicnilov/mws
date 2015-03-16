@@ -12,6 +12,5 @@ module Mws
     def url_prefix_set?
       !!(connection.url_prefix && connection.url_prefix.host)
     end
-
   end
 end

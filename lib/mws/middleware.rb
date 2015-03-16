@@ -2,14 +2,15 @@ module Mws
   # Todo: Due to autoloading stuff convenience method should be placed to a separate
   # base class
   class Middleware < Faraday::Middleware
-    autoload :RaiseError,     'mws/middleware/raise_error'
-    autoload :MwsEndpoint,    'mws/middleware/mws_endpoint'
+    autoload :MwsEndpoint,    'mws/middleware/request/mws_endpoint'
+    autoload :UserAgent,      'mws/middleware/request/user_agent'
     autoload :XmlRequest,     'mws/middleware/request/xml'
-    # autoload :UserAgent,      'mws/middleware/request/user_agent'
-    # autoload :Mashify,        'mws/middleware/mashify'
+    autoload :RaiseError,     'mws/middleware/response/raise_error'
+    # autoload :Mashify,        'mws/middleware/response/mashify'
     autoload :Logger,         'mws/middleware/logger'
 
-    Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint })
+    Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint },
+                                         :user_agent => lambda { Mws::Middleware::UserAgent })
 
     Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError })
 

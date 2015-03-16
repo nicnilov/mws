@@ -28,6 +28,9 @@ module Mws
           # Ensures the mws endpoint url is set.
           conn.request  :mws_endpoint, self, options
 
+          # Inserts user agent header as requested in Amazon MWS docs
+          conn.request  :user_agent
+
           # Raises errors for 40x responses.
           conn.response :raise_error
 
