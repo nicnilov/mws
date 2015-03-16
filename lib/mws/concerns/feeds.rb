@@ -25,7 +25,8 @@ module Mws
       # Returns the Faraday::Response.
       define_verbs(:get, :post, :put, :delete, :patch, :head)
 
-      def submit_feed(content, type)
+      def submit_feed(payload)
+        get('/', payload)
       end
 
     end

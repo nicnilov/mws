@@ -20,20 +20,26 @@ module Mws
 
       # Internal: Internal faraday connection where all requests go through
       def connection
-        @connection ||= Faraday.new(mws_endpoint, connection_options) do |builder|
-          # Converts the request into json.
-          # builder.request :json
-          # Ensures the instance url is set.
-          builder.use      Mws::Middleware::MwsEndpoint, self, options
-          # Follows 34x redirects.
-          builder.use      FaradayMiddleware::FollowRedirects
-          # Raises errors for 40x responses.
-          builder.use      Mws::Middleware::RaiseError
-          builder.response :xml
-          # Log request/responses
-          builder.use      Mws::Middleware::Logger, Mws.configuration.logger, options if Mws.log?
+        @connection ||= Faraday.new(mws_endpoint, connection_options) do |conn|
+          # conn.request :xml
+          conn.request :multipart
+          conn.request :url_encoded
 
-          builder.adapter  adapter
+          # Ensures the mws endpoint url is set.
+          conn.request  :mws_endpoint, self, options
+
+          # Raises errors for 40x responses.
+          conn.response :raise_error
+
+          # Follows 34x redirects.
+          conn.response :follow_redirects
+
+          conn.response :xml,  :content_type => /\bxml$/
+
+          # Log request/responses
+          conn.use      Mws::Middleware::Logger, Mws.configuration.logger, options if Mws.log?
+
+          conn.adapter  adapter
         end
       end
 

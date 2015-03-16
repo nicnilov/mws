@@ -13,5 +13,4 @@ module Mws
       !!(connection.url_prefix && connection.url_prefix.host)
     end
   end
-
 end

@@ -1,11 +1,17 @@
 module Mws
-  # Base class that all middleware can extend. Provides some convenient helper
-  # functions.
+  # Todo: Due to autoloading stuff convenience method should be placed to a separate
+  # base class
   class Middleware < Faraday::Middleware
     autoload :RaiseError,     'mws/middleware/raise_error'
     autoload :MwsEndpoint,    'mws/middleware/mws_endpoint'
+    autoload :XmlRequest,     'mws/middleware/request/xml'
+    # autoload :UserAgent,      'mws/middleware/request/user_agent'
     # autoload :Mashify,        'mws/middleware/mashify'
     autoload :Logger,         'mws/middleware/logger'
+
+    Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint })
+
+    Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError })
 
     def initialize(app, client, options)
       @app, @client, @options = app, client, options

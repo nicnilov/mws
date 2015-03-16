@@ -2,10 +2,11 @@ require 'faraday'
 require 'faraday_middleware'
 
 require 'mws/config'
+require 'mws/middleware'
 
 module Mws
   autoload :Client,     'mws/client'
-  autoload :Middleware, 'mws/middleware'
+  # autoload :Middleware, 'mws/middleware'
 
   module Concerns
     autoload :Connection, 'mws/concerns/connection'
