@@ -20,7 +20,7 @@ module Mws
 
       # Internal: Internal faraday connection where all requests go through
       def connection
-        @connection ||= Faraday.new(options[:mws_endpoint], connection_options) do |builder|
+        @connection ||= Faraday.new(mws_endpoint, connection_options) do |builder|
           # Converts the request into json.
           # builder.request :json
           # Ensures the instance url is set.
