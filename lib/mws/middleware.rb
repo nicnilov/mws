@@ -4,13 +4,14 @@ module Mws
   class Middleware < Faraday::Middleware
     autoload :MwsEndpoint,    'mws/middleware/request/mws_endpoint'
     autoload :UserAgent,      'mws/middleware/request/user_agent'
-    autoload :XmlRequest,     'mws/middleware/request/xml'
+    autoload :XmlRequest,     'mws/middleware/request/xml_request'
     autoload :RaiseError,     'mws/middleware/response/raise_error'
     # autoload :Mashify,        'mws/middleware/response/mashify'
     autoload :Logger,         'mws/middleware/logger'
 
     Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint },
-                                         :user_agent => lambda { Mws::Middleware::UserAgent })
+                                         :user_agent => lambda { Mws::Middleware::UserAgent },
+                                         :xml => lambda { Mws::Middleware::XmlRequest })
 
     Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError })
 

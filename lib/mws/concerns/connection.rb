@@ -21,7 +21,7 @@ module Mws
       # Internal: Internal faraday connection where all requests go through
       def connection
         @connection ||= Faraday.new(mws_endpoint, connection_options) do |conn|
-          # conn.request :xml
+          conn.request :xml
           conn.request :multipart
           conn.request :url_encoded
 
