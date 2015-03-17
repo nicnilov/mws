@@ -21,9 +21,8 @@ module Mws
       # Internal: Internal faraday connection where all requests go through
       def connection
         @connection ||= Faraday.new(mws_endpoint, connection_options) do |conn|
-          # conn.request :xml
-          conn.request :multipart
-          conn.request :url_encoded
+          conn.request  :multipart
+          conn.request  :url_encoded
 
           # Ensures the mws endpoint url is set.
           conn.request  :mws_endpoint, self, options
@@ -43,7 +42,7 @@ module Mws
           # Follows 34x redirects.
           conn.response :follow_redirects
 
-          conn.response :xml, :content_type => /\bxml$/
+          conn.response :xml
 
           # Log request/responses
           conn.use      Mws::Middleware::Logger, Mws.configuration.logger, options if Mws.log?

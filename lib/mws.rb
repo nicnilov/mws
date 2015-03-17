@@ -8,7 +8,6 @@ require 'mws/middleware'
 module Mws
   autoload :Client,       'mws/client'
   autoload :Marketplace,  'mws/marketplace'
-  # autoload :Middleware,  'mws/middleware'
 
   module Concerns
     autoload :Connection, 'mws/concerns/connection'
@@ -16,6 +15,10 @@ module Mws
     autoload :Verbs,      'mws/concerns/verbs'
     autoload :Envelope,   'mws/concerns/envelope'
     autoload :Api,        'mws/concerns/api'
+
+    module Services
+      autoload :Feeds,    'mws/concerns/services/feeds'
+    end
   end
 
   Error = Class.new(StandardError)

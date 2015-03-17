@@ -4,6 +4,6 @@ module Mws
     include Mws::Concerns::Base
     include Mws::Concerns::Connection
     include Mws::Concerns::Envelope
-    include Mws::Concerns::Api
+    include Mws::Concerns::Services::Feeds
   end
 end

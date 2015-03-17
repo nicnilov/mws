@@ -1,5 +1,3 @@
-require 'mws/concerns/verbs'
-
 module Mws
   module Concerns
     module Api
@@ -26,7 +24,7 @@ module Mws
       define_verbs(:get, :post, :put, :delete, :patch, :head)
 
       def request(payload = nil, params = {}, &block)
-        raise ArgumentError, 'Supply either payload or block' if block_given? && !payload.nil?
+        raise ArgumentError, 'Supply either payload or block' if block_given? && payload.to_s != ''
         body = block_given? ? (envelope &block) : payload
 
         post do |req|
@@ -34,15 +32,6 @@ module Mws
           req.params.merge!(params).merge!(default_params)
           req.headers['Content-Type'] = 'text/xml'
           req.body = body
-        end
-      end
-
-      def submit_feed(payload = nil)
-        params = {'Action' => 'SubmitFeed', 'FeedType' => '_POST_PRODUCT_DATA_', 'Version' => '2009-01-01'}
-        if block_given?
-          request(payload, params, &Proc.new)
-        else
-          request(payload, params)
         end
       end
 
