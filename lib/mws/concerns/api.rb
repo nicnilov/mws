@@ -31,6 +31,11 @@ module Mws
         else
           post('/', payload)
         end
+        post do |req|
+          req.uri = '/'
+          req.headers['Content-Type'] = 'text/xml'
+          req.body = payload
+        end
       end
 
       def submit_feeds(payload, operation_type)

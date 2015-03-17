@@ -13,21 +13,20 @@ module Mws
       AAHKV2X7AFYLW: 'https://mws.amazonservices.com.cn'
     }
 
-    class << self
-      def mws_endpoint_encoding(id)
-        endpoint_url = mws_endpoint_url(id)
-        if endpoint_url.end_with?('jp')
-          'Shift_JIS'
-        elsif endpoint_url.end_with?('cn')
-          'UTF-16'
-        else
-          'ISO-8859-1'
-        end
-      end
 
-      def mws_endpoint_url(id)
-        MWS_ENDPOINTS.fetch(id.to_s.to_sym) { raise Mws::InvalidMarketplaceIdError }
+    def mws_endpoint_encoding(id)
+      endpoint_url = mws_endpoint_url(id)
+      if endpoint_url.end_with?('jp')
+        'Shift_JIS'
+      elsif endpoint_url.end_with?('cn')
+        'UTF-16'
+      else
+        'ISO-8859-1'
       end
+    end
+
+    def mws_endpoint_url(id)
+      MWS_ENDPOINTS.fetch(id.to_s.to_sym) { raise Mws::InvalidMarketplaceIdError }
     end
   end
 end

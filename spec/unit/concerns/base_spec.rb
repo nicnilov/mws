@@ -34,7 +34,7 @@ describe Mws::Concerns::Base do
 
     context 'when options[:mws_endpoint] is unset' do
       before do
-        expect(client).to receive(:mws_endpoint_by_id).and_return('bar')
+        expect(client).to receive(:mws_endpoint_url).and_return('bar')
       end
 
       it 'infers from marketplace map' do

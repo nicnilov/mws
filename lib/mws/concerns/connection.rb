@@ -31,6 +31,9 @@ module Mws
           # Inserts user agent header as requested in Amazon MWS docs
           conn.request  :user_agent
 
+          # Inserts request signature
+          conn.request  :signature
+
           # Raises errors for 40x responses.
           conn.response :raise_error
 
