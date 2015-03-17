@@ -6,6 +6,7 @@ module Mws
     autoload :UserAgent,      'mws/middleware/request/user_agent'
     autoload :Signature,      'mws/middleware/request/signature'
     autoload :XmlRequest,     'mws/middleware/request/xml_request'
+    autoload :Md5,            'mws/middleware/request/md5'
     autoload :RaiseError,     'mws/middleware/response/raise_error'
     # autoload :Mashify,        'mws/middleware/response/mashify'
     autoload :Logger,         'mws/middleware/logger'
@@ -13,6 +14,7 @@ module Mws
     Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint },
                                          :user_agent => lambda { Mws::Middleware::UserAgent },
                                          :xml => lambda { Mws::Middleware::XmlRequest },
+                                         :md5 => lambda { Mws::Middleware::Md5 },
                                          :signature => lambda { Mws::Middleware::Signature })
 
     Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError })

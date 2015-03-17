@@ -32,7 +32,10 @@ module Mws
           conn.request  :user_agent
 
           # Inserts request signature
-          conn.request  :signature
+          conn.request  :signature, self, options
+
+          # Adds header with md5 calculated on body
+          conn.request  :md5
 
           # Raises errors for 40x responses.
           conn.response :raise_error
@@ -40,7 +43,7 @@ module Mws
           # Follows 34x redirects.
           conn.response :follow_redirects
 
-          conn.response :xml,  :content_type => /\bxml$/
+          conn.response :xml, :content_type => /\bxml$/
 
           # Log request/responses
           conn.use      Mws::Middleware::Logger, Mws.configuration.logger, options if Mws.log?

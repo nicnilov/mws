@@ -38,7 +38,7 @@ module Mws
       end
 
       def submit_feed(payload = nil)
-        params = {'Action' => 'SubmitFeed', 'FeedType' => '_POST_PRODUCT_DATA_'}
+        params = {'Action' => 'SubmitFeed', 'FeedType' => '_POST_PRODUCT_DATA_', 'Version' => '2009-01-01'}
         if block_given?
           request(payload, params, &Proc.new)
         else
