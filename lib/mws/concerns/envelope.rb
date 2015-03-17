@@ -6,7 +6,7 @@ module Mws
 
       def envelope
         xml = Builder::XmlMarkup.new
-        xml.instruct!(:xml, :version=>"1.0", :encoding=>"#{mws_endpoint_encoding(options[:mws_endpoint])}")
+        xml.instruct!(:xml, :version=>"1.0", :encoding=>"#{mws_endpoint_encoding(options[:marketplace_id])}")
         xml.AmazonEnvelope('xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                            'xsi:noNamespaceSchemaLocation' => 'amzn-envelope.xsd') do |xml|
           xml.Header do |xml|
@@ -16,7 +16,7 @@ module Mws
 
           yield xml
         end
-        xml
+        xml.target!
       end
     end
   end

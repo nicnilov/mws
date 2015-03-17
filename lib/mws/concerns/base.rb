@@ -9,6 +9,7 @@ module Mws
       # opts - A hash of options to be passed in (default: {}).
       #        :seller_id              - Amazon MWS seller id as shown when registering
       #        :marketplace_id         - Amazon MWS marketplace id
+      #        :mws_auth_token         - Amazon MWS token for accessing third-party accounts
       #        :aws_access_key         - Amazon AWS API key
       #        :aws_access_secret      - Amazon AWS API secret key
       #

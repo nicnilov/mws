@@ -25,23 +25,36 @@ module Mws
       # Returns the Faraday::Response.
       define_verbs(:get, :post, :put, :delete, :patch, :head)
 
-      def request(payload)
-        if block_given?
-          xml = yield envelope
-        else
-          post('/', payload)
-        end
+      def request(payload = nil, params = {}, &block)
+        raise ArgumentError, 'Supply either payload or block' if block_given? && !payload.nil?
+        body = block_given? ? (envelope &block) : payload
+
         post do |req|
-          req.uri = '/'
+          req.path = '/'
+          req.params.merge!(params).merge!(default_params)
           req.headers['Content-Type'] = 'text/xml'
-          req.body = payload
+          req.body = body
         end
       end
 
-      def submit_feeds(payload, operation_type)
-
+      def submit_feed(payload = nil)
+        params = {'Action' => 'SubmitFeed', 'FeedType' => '_POST_PRODUCT_DATA_'}
+        if block_given?
+          request(payload, params, &Proc.new)
+        else
+          request(payload, params)
+        end
       end
 
+      private
+
+      def default_params
+        {
+          'AWSAccessKeyId' => options[:aws_access_key],
+          'SellerId' => options[:seller_id],
+          'MWSAuthToken' => options[:mws_auth_token]
+        }
+      end
     end
   end
 end

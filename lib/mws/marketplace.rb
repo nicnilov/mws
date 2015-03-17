@@ -26,7 +26,7 @@ module Mws
     end
 
     def mws_endpoint_url(id)
-      MWS_ENDPOINTS.fetch(id.to_s.to_sym) { raise Mws::InvalidMarketplaceIdError }
+      MWS_ENDPOINTS.fetch(id.to_s.to_sym) { raise Mws::InvalidMarketplaceIdError, "'#{id.to_s}'" }
     end
   end
 end

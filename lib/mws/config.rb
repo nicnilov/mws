@@ -89,6 +89,9 @@ module Mws
     # Marketplace id on Amazon MWS.
     option :marketplace_id, :default => lambda { ENV['AMWS_MARKETPLACE_ID'] }
 
+    # Amazon MWS token for accessing third-party accounts
+    option :mws_auth_token, :default => lambda { ENV['AMWS_AUTH_TOKEN'] }
+
     # Access key to incude with requests.
     option :aws_access_key, :default => lambda { ENV['AMWS_ACCESS_KEY'] }
 

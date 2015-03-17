@@ -4,6 +4,7 @@ describe Mws do
   before do
     ENV['AMWS_SELLER_ID']      = nil
     ENV['AMWS_MARKETPLACE_ID'] = nil
+    ENV['AMWS_AUTH_TOKEN']     = nil
     ENV['AMWS_ACCESS_KEY']     = nil
     ENV['AMWS_ACCESS_SECRET']  = nil
     ENV['PROXY']               = nil
@@ -21,7 +22,7 @@ describe Mws do
     context 'by default' do
       its(:adapter)                { should eq Faraday.default_adapter }
       [:seller_id, :marketplace_id, :aws_access_key, :aws_access_secret,
-       :mws_endpoint, :timeout, :proxy_uri].each do |attr|
+       :mws_auth_token, :mws_endpoint, :timeout, :proxy_uri].each do |attr|
         its(attr) { should be_nil }
       end
     end
@@ -30,6 +31,7 @@ describe Mws do
       before do
         { 'AMWS_SELLER_ID'       => 'foo',
           'AMWS_MARKETPLACE_ID'  => 'bar',
+          'AMWS_AUTH_TOKEN'      => 'hey',
           'AMWS_ACCESS_KEY'      => 'foobar',
           'AMWS_ACCESS_SECRET'   => 'baz',
           'PROXY_URI'            => 'proxy',
@@ -38,6 +40,7 @@ describe Mws do
 
       its(:seller_id)         { should eq 'foo' }
       its(:marketplace_id)    { should eq 'bar'}
+      its(:mws_auth_token)    { should eq 'hey'}
       its(:aws_access_key)    { should eq 'foobar' }
       its(:aws_access_secret) { should eq 'baz' }
       its(:proxy_uri)         { should eq 'proxy' }
@@ -46,7 +49,7 @@ describe Mws do
 
   describe '#configure' do
     [:seller_id, :marketplace_id, :aws_access_key, :aws_access_secret, :timeout,
-     :mws_endpoint, :proxy_uri].each do |attr|
+     :mws_auth_token, :mws_endpoint, :proxy_uri].each do |attr|
       it "allows #{attr} to be set" do
         Mws.configure do |config|
           config.send("#{attr}=", 'foobar')
