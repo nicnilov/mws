@@ -20,7 +20,7 @@ module Mws
       def initialize(opts = {})
         raise ArgumentError, 'Please specify a hash of options' unless opts.is_a?(Hash)
         @options = Hash[Mws.configuration.options.map { |option| [option, Mws.configuration.send(option)] }]
-        @options.merge(opts)
+        @options.merge!(opts)
         yield builder if block_given?
       end
 
