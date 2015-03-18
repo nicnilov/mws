@@ -14,7 +14,7 @@ Amazon MWS API client
 
 ## Usage:
 
-1. Clone the repository
+1. Clone the repository `git clone git@github.com:nicnilov/mws.git`
 2. Run `bundle install`
 3. Run `bundle exec ruby lib/cli.rb`
 4. Follow directions on screen
