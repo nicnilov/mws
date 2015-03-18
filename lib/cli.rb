@@ -14,7 +14,6 @@ module Cli
       raise ArgumentError, 'Every parameter should have a value' if value.to_s == ''
     end
 
-    Mws.log = true
     @mws = Mws.new
 
     submission_id = submit_product_test
@@ -99,5 +98,5 @@ begin
   Cli.execute
   say('Finished successfully')
 rescue => error
-  say("Exception: #{error.message}\n\n#{error.backtrace}")
+  say("#{error.class}: #{error.message}\n\n#{error.backtrace}")
 end
