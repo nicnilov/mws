@@ -8,7 +8,7 @@ module Cli
     seller_id = ask('Seller ID: ') { |q| q.default = ENV['AMWS_SELLER_ID'] }
     marketplace_id = ask('Marketplace ID: ') { |q| q.default = ENV['AMWS_MARKETPLACE_ID'] }
     aws_access_key = ask('AWS Access Key ID: ') { |q| q.default = ENV['AMWS_ACCESS_KEY'] }
-    aws_access_secret = ask('AWS Secret Key: ') { |q| q.default = ENV['AMWS_ACCESS_SECRET'] }
+    aws_access_secret = ask('AWS Access Secret: ') { |q| q.default = ENV['AMWS_ACCESS_SECRET'] }
 
     [seller_id, marketplace_id, aws_access_key, aws_access_secret].each do |value|
       raise ArgumentError, 'Every parameter should have a value' if value.to_s == ''
@@ -23,13 +23,13 @@ module Cli
 
     submission_id = submit_product_test
 
-    say('Sleeping for 60 sec before requesting submission result...')
+    say('Sleeping for 120 sec before requesting submission result...')
 
-    sleep(60)
+    sleep(120)
 
     say('Requesting submission result...')
 
-    # Submission result may not be ready in 60 seconds
+    # Submission result may not be ready in 120 seconds
     begin
       response = @mws.get_feed_submission_result(submission_id)
       say("Submission result:\n" + response.body.to_s)
