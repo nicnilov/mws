@@ -14,7 +14,12 @@ module Cli
       raise ArgumentError, 'Every parameter should have a value' if value.to_s == ''
     end
 
-    @mws = Mws.new
+    @mws = Mws.new({
+      seller_id: merchant_id,
+      marketplace_id: marketplace_id,
+      aws_access_key: aws_access_key,
+      aws_access_secret: aws_access_secret
+    })
 
     submission_id = submit_product_test
 
