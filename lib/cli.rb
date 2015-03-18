@@ -23,13 +23,13 @@ module Cli
 
     submission_id = submit_product_test
 
-    say('Sleeping for 120 sec before requesting submission result...')
+    say('Sleeping for 15 sec before requesting submission result...')
 
-    sleep(120)
+    sleep(15)
 
     say('Requesting submission result...')
 
-    # Submission result may not be ready in 120 seconds
+    # Submission result will likely not be ready in 15 seconds
     begin
       response = @mws.get_feed_submission_result(submission_id)
       say("Submission result:\n" + response.body.to_s)
