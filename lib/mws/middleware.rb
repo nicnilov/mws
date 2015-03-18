@@ -1,5 +1,5 @@
 module Mws
-  # Todo: Due to autoloading stuff convenience method should be placed to a separate
+  # Todo: Due to autoloading stuff convenience methods should be placed to a separate
   # base class
   class Middleware < Faraday::Middleware
     autoload :MwsEndpoint,    'mws/middleware/request/mws_endpoint'
@@ -8,7 +8,7 @@ module Mws
     autoload :XmlRequest,     'mws/middleware/request/xml_request'
     autoload :Md5,            'mws/middleware/request/md5'
     autoload :RaiseError,     'mws/middleware/response/raise_error'
-    # autoload :Mashify,        'mws/middleware/response/mashify'
+    autoload :Throttle,       'mws/middleware/response/throttle'
     autoload :Logger,         'mws/middleware/logger'
 
     Faraday::Request.register_middleware(:mws_endpoint => lambda { Mws::Middleware::MwsEndpoint },
@@ -17,7 +17,8 @@ module Mws
                                          :md5 => lambda { Mws::Middleware::Md5 },
                                          :signature => lambda { Mws::Middleware::Signature })
 
-    Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError })
+    Faraday::Response.register_middleware(:raise_error => lambda { Mws::Middleware::RaiseError },
+                                          :throttle => lambda { Mws::Middleware::Throttle })
 
     def initialize(app, client, options)
       @app, @client, @options = app, client, options

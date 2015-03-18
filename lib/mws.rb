@@ -25,6 +25,7 @@ module Mws
   ConfigurationError = Class.new(Error)
   AuthorizationError = Class.new(Error)
   InvalidMarketplaceIdError = Class.new(Error)
+  RequestThrottledError = Class.new(Error)
 
   class << self
     def new(*args)

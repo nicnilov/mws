@@ -14,6 +14,7 @@ module Cli
       raise ArgumentError, 'Every parameter should have a value' if value.to_s == ''
     end
 
+    Mws.log = true
     @mws = Mws.new
 
     submission_id = submit_product_test
@@ -50,32 +51,32 @@ module Cli
     xml.MessageType('Product')
     xml.PurgeAndReplace(false)
     xml.Message do |xml|
-      xml.MessageID(SecureRandom.hex)
+      xml.MessageID(SecureRandom.random_number(1000000))
       xml.OperationType('Update')
-    end
-    xml.Product do |xml|
-      xml.SKU(SecureRandom.hex)
-      xml.StandardProductID do |xml|
-        xml.Type('ASIN')
-        xml.Value(SecureRandom.hex)
-      end
-      xml.ProductTaxCode('A_GEN_NOTAX')
-      xml.DescriptionData do |xml|
-        xml.Title('Example Product Title')
-        xml.Brand('Example Product Brand')
-        xml.Description('This is an example product description.')
-        xml.BulletPoint('Example Bullet Point 1')
-        xml.BulletPoint('Example Bullet Point 2')
-        xml.MSRP('25.19', 'currency' => 'USD')
-        xml.Manufacturer('Example Product Manufacturer')
-        xml.ItemType('example-item-type')
-      end
-      xml.ProductData do |xml|
-        xml.Health do |xml|
-          xml.ProductType do |xml|
-            xml.HealthMisc do |xml|
-              xml.Ingredients('Example Ingredients')
-              xml.Directions('Example Directions')
+      xml.Product do |xml|
+        xml.SKU('56789')
+        xml.StandardProductID do |xml|
+          xml.Type('ASIN')
+          xml.Value('B0EXAMPLEG')
+        end
+        xml.ProductTaxCode('A_GEN_NOTAX')
+        xml.DescriptionData do |xml|
+          xml.Title('Example Product Title')
+          xml.Brand('Example Product Brand')
+          xml.Description('This is an example product description.')
+          xml.BulletPoint('Example Bullet Point 1')
+          xml.BulletPoint('Example Bullet Point 2')
+          xml.MSRP('25.19', 'currency' => 'USD')
+          xml.Manufacturer('Example Product Manufacturer')
+          xml.ItemType('example-item-type')
+        end
+        xml.ProductData do |xml|
+          xml.Health do |xml|
+            xml.ProductType do |xml|
+              xml.HealthMisc do |xml|
+                xml.Ingredients('Example Ingredients')
+                xml.Directions('Example Directions')
+              end
             end
           end
         end

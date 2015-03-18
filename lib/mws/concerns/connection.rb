@@ -2,6 +2,8 @@ module Mws
   module Concerns
     module Connection
 
+      attr_accessor :throttling_status
+
       # Public: The Faraday::Builder instance used for the middleware stack. This
       # can be used to insert a custom middleware.
       #
@@ -35,6 +37,9 @@ module Mws
 
           # Adds header with md5 calculated on body
           conn.request  :md5
+
+          # Handles throttling events
+          conn.response :throttle, self, options
 
           # Raises errors for 40x responses.
           conn.response :raise_error

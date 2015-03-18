@@ -9,6 +9,11 @@ module Mws
         raise Mws::AuthorizationError, message
       when 413
         raise Faraday::Error::ClientError.new('HTTP 413 - Request Entity Too Large', env[:response])
+      when 503
+        # Pass through if RequestThrottled
+        unless body['ErrorResponse']['Error']['Code'] == 'RequestThrottled'
+          raise Faraday::Error::ClientError.new(message, env[:response])
+        end
       when 400...600
         raise Faraday::Error::ClientError.new(message, env[:response])
       end
